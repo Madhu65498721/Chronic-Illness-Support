@@ -120,44 +120,43 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-gray-900 text-white min-h-screen">
-      <h1 className="text-center text-3xl font-bold mb-6">Chronic Illness Support Bot</h1>
-
-      <div className="mb-6">
-        <h2 className="text-center text-2xl mb-4">Common Questions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {Object.keys(predefinedProblems).map((question, index) => (
-            <div
-              key={index}
-              onClick={() => handleQuestionClick(question)}
-              className="cursor-pointer p-4 border border-gray-700 rounded-lg flex items-center bg-gray-800 hover:bg-gray-700 transition"
-            >
-              <FontAwesomeIcon icon={faQuestionCircle} className="mr-2 text-lg" />
-              {question}
+    <div className="container mx-auto max-w-lg p-6 bg-gray-800 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-center text-blue-400 mb-6">Chronic Illness Support Bot</h1>
+      
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        {Object.keys(predefinedProblems).map((question, index) => (
+          <div
+            key={index}
+            onClick={() => handleQuestionClick(question)}
+            className="p-4 border border-gray-600 rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600 transition"
+          >
+            <div className="flex items-center">
+              <FontAwesomeIcon icon={faQuestionCircle} className="text-blue-400 mr-2" />
+              <span className="text-white">{question}</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
-      <div className="max-h-96 overflow-y-scroll mb-6 p-4 border border-gray-700 rounded-lg bg-gray-800">
+      <div className="max-h-96 overflow-y-auto mb-6 p-4 bg-gray-900 border border-gray-700 rounded-lg">
         {chatLog.map((message, index) => (
           <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
-            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} className="mr-2 self-center text-lg text-green-500" />}
-            <div className={`inline-block p-3 rounded-lg ${message.type === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-white'}`}>
+            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} className="text-blue-400 mr-2 self-center" />}
+            <div className={`p-4 rounded-lg ${message.type === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-white'} max-w-xs`}>
               {message.message}
               {message.detailed && (
-                <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 rounded-lg bg-blue-600 text-white text-sm">
+                <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition">
                   Tell me more
                 </button>
               )}
-              <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 rounded-lg bg-gray-600 text-white text-sm">
+              <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition">
                 <FontAwesomeIcon icon={faCopy} />
               </button>
             </div>
-            {message.type === 'user' && <FontAwesomeIcon icon={faUser} className="ml-2 self-center text-lg text-blue-500" />}
+            {message.type === 'user' && <FontAwesomeIcon icon={faUser} className="text-blue-400 ml-2 self-center" />}
           </div>
         ))}
-        {isLoading && <FontAwesomeIcon icon={faSpinner} spin className="block mx-auto text-2xl" />}
+        {isLoading && <div className="text-center text-blue-400"><FontAwesomeIcon icon={faSpinner} spin size="lg" /></div>}
       </div>
 
       <form onSubmit={handleSubmit} className="flex items-center space-x-4">
