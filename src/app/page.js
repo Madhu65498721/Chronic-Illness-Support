@@ -58,7 +58,7 @@ export default function Home() {
     } else {
       setChatLog((prevChatLog) => [
         ...prevChatLog,
-        { type: 'bot', message: "Sorry, I can only provide information related to chronic illness management." }
+        { type: 'bot', message: "Hey there, superstar! You're stronger than you think, and I'm here to cheer you on. Let's stay focused on chronic illness management for now, shall we?" }
       ]);
     }
   };
