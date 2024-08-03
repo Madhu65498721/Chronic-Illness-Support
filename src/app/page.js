@@ -120,49 +120,49 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold text-center text-blue-400 border-b-2 border-blue-600 pb-2 mb-4">
+    <div className="container mx-auto p-6 bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white">
+      <h1 className="text-3xl font-bold text-center text-blue-400 border-b-4 border-blue-600 pb-2 mb-6">
         Chronic Illness Support Bot
       </h1>
 
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-center mb-4">Common Questions</h2>
+        <h2 className="text-2xl font-semibold text-center mb-6 text-yellow-400">Common Questions</h2>
         <div className="grid grid-cols-2 gap-4">
           {Object.keys(predefinedProblems).map((question, index) => (
             <div
               key={index}
               onClick={() => handleQuestionClick(question)}
-              className="cursor-pointer p-4 border border-gray-600 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
+              className="cursor-pointer p-4 border border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700 transition-shadow shadow-lg hover:shadow-xl"
             >
-              <FontAwesomeIcon icon={faQuestionCircle} className="text-blue-500 mr-2" />
+              <FontAwesomeIcon icon={faQuestionCircle} className="text-teal-400 mr-2" />
               {question}
             </div>
           ))}
         </div>
       </div>
 
-      <div className="max-h-[500px] overflow-y-auto mb-6 border border-gray-600 p-4 rounded-lg bg-gray-800">
+      <div className="max-h-[500px] overflow-y-auto mb-6 border border-gray-700 p-4 rounded-lg bg-gray-800 shadow-lg">
         {chatLog.map((message, index) => (
           <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
-            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} className="text-blue-500 mr-2 self-center" />}
+            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} className="text-teal-400 mr-2 self-center" />}
             <div className={`p-3 rounded-lg ${message.type === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-white'}`}>
               {message.message}
               {message.detailed && (
-                <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-400 transition">
+                <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 rounded-lg bg-green-500 text-white hover:bg-green-400 transition">
                   Tell me more
                 </button>
               )}
-              <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-400 transition">
+              <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 rounded-lg bg-purple-500 text-white hover:bg-purple-400 transition">
                 <FontAwesomeIcon icon={faCopy} />
               </button>
             </div>
-            {message.type === 'user' && <FontAwesomeIcon icon={faUser} className="text-blue-500 ml-2 self-center" />}
+            {message.type === 'user' && <FontAwesomeIcon icon={faUser} className="text-teal-400 ml-2 self-center" />}
           </div>
         ))}
-        {isLoading && <FontAwesomeIcon icon={faSpinner} spin className="text-blue-500" />}
+        {isLoading && <FontAwesomeIcon icon={faSpinner} spin className="text-teal-400" />}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex items-center">
+      <form onSubmit={handleSubmit} className="flex items-center fixed bottom-4 left-1/2 transform -translate-x-1/2 w-full max-w-3xl bg-gray-900 p-4 rounded-lg shadow-lg">
         <input
           type="text"
           placeholder="Type your message..."
