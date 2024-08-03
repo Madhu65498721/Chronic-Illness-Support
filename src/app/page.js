@@ -70,9 +70,13 @@ export default function Home() {
     const data = { contents: [{ parts: [{ text: message }] }] };
 
     setIsLoading(true);
+    console.log('API Key:', process.env.NEXT_PUBLIC_GEMINI_API_KEY); // Logging API key
+    console.log('Sending request to API:', url);
+    console.log('Request data:', data);
 
     try {
       const response = await axios.post(url, data, { headers });
+      console.log('Response:', response); // Logging the response
       if (response.data.candidates && response.data.candidates.length > 0) {
         const botMessage = response.data.candidates[0].content.parts[0].text;
         setChatLog((prevChatLog) => [
@@ -83,7 +87,7 @@ export default function Home() {
         throw new Error('No candidates in response');
       }
     } catch (error) {
-      console.error('API Error:', error.response?.data || error.message);
+      console.error('API Error:', error.response?.data || error.message); // Enhanced error logging
       setChatLog((prevChatLog) => [
         ...prevChatLog,
         { type: 'bot', message: `Sorry, something went wrong. Please try again. Error: ${error.message}` }
