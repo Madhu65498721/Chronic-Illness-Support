@@ -11,3 +11,7 @@ body {
   padding: 20px;
   font-family: Arial, sans-serif;
 }
+
+h1 {
+  color: #60a5fa; /* Light blue color for the title */
+}
