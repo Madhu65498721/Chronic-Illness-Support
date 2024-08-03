@@ -3,15 +3,21 @@
 @tailwind utilities;
 
 body {
-  background-color: #1a202c; /* Dark background */
-  color: #f7fafc; /* Light text color */
+  background-color: #1a202c; /* Dark background color for the whole body */
+  color: #e2e8f0; /* Light text color */
 }
 
 .container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-h1 {
-  color: #60a5fa; /* Light blue color for the title */
+input {
+  background-color: #2d3748; /* Dark background color for input */
+  color: #e2e8f0; /* Light text color */
+}
+
+button {
+  background-color: #3182ce; /* Blue color for buttons */
+  color: #ffffff; /* White text color */
 }
