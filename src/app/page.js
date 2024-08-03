@@ -121,67 +121,60 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: 'black', color: 'white' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '2em' }}>Chronic Illness Support Bot</h1>
-      
-      <div style={{ marginBottom: '20px' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '1.5em' }}>Common Questions</h2>
-        {Object.keys(predefinedProblems).map((question, index) => (
-          <div
-            key={index}
-            onClick={() => handleQuestionClick(question)}
-            style={{
-              cursor: 'pointer',
-              padding: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-              marginBottom: '10px',
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#333'
-            }}
-          >
-            <FontAwesomeIcon icon={faQuestionCircle} style={{ marginRight: '10px' }} />
-            {question}
-          </div>
-        ))}
+    <div className="container mx-auto p-4 bg-gray-900 text-white min-h-screen">
+      <h1 className="text-center text-3xl font-bold mb-6">Chronic Illness Support Bot</h1>
+
+      <div className="mb-6">
+        <h2 className="text-center text-2xl mb-4">Common Questions</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Object.keys(predefinedProblems).map((question, index) => (
+            <div
+              key={index}
+              onClick={() => handleQuestionClick(question)}
+              className="cursor-pointer p-4 border border-gray-700 rounded-lg flex items-center bg-gray-800 hover:bg-gray-700 transition"
+            >
+              <FontAwesomeIcon icon={faQuestionCircle} className="mr-2 text-lg" />
+              {question}
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div style={{ maxHeight: '400px', overflowY: 'scroll', marginBottom: '20px', border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
+      <div className="max-h-96 overflow-y-scroll mb-6 p-4 border border-gray-700 rounded-lg bg-gray-800">
         {chatLog.map((message, index) => (
-          <div key={index} style={{ display: 'flex', justifyContent: message.type === 'user' ? 'flex-end' : 'flex-start', margin: '10px 0' }}>
-            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} style={{ marginRight: '10px', alignSelf: 'center' }} />}
-            <span style={{ display: 'inline-block', padding: '10px', borderRadius: '5px', background: message.type === 'user' ? '#dcf8c6' : '#f1f1f1', color: 'black' }}>
+          <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
+            {message.type === 'bot' && <FontAwesomeIcon icon={faRobot} className="mr-2 self-center text-lg text-green-500" />}
+            <div className={`inline-block p-3 rounded-lg ${message.type === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-white'}`}>
               {message.message}
               {message.detailed && (
-                <button onClick={() => handleDetailedRequest(message.detailed)} style={{ marginLeft: '10px', padding: '5px 10px', borderRadius: '5px', background: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 rounded-lg bg-blue-600 text-white text-sm">
                   Tell me more
                 </button>
               )}
-              <button onClick={() => copyToClipboard(message.message)} style={{ marginLeft: '10px', padding: '5px 10px', borderRadius: '5px', background: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>
+              <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 rounded-lg bg-gray-600 text-white text-sm">
                 <FontAwesomeIcon icon={faCopy} />
               </button>
-            </span>
-            {message.type === 'user' && <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', alignSelf: 'center' }} />}
+            </div>
+            {message.type === 'user' && <FontAwesomeIcon icon={faUser} className="ml-2 self-center text-lg text-blue-500" />}
           </div>
         ))}
-        {isLoading && <FontAwesomeIcon icon={faSpinner} spin />}
+        {isLoading && <FontAwesomeIcon icon={faSpinner} spin className="block mx-auto text-2xl" />}
       </div>
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <form onSubmit={handleSubmit} className="flex items-center space-x-4">
         <input
           type="text"
           placeholder="Type your message..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          style={{ flex: 1, padding: '10px', borderRadius: '5px', border: '1px solid #ccc', marginRight: '10px', color: 'black' }}
+          className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500"
         />
-        <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', background: '#007bff', color: '#fff', cursor: 'pointer' }}>
+        <button type="submit" className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition">
           ASK
         </button>
       </form>
 
-      <footer style={{ marginTop: '20px', textAlign: 'center', fontSize: '14px', color: '#777' }}>
+      <footer className="mt-6 text-center text-gray-500 text-sm">
         © MADHU - 2024
       </footer>
     </div>
