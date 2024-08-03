@@ -149,7 +149,7 @@ export default function Home() {
               {message.message}
               {message.detailed && (
                 <button onClick={() => handleDetailedRequest(message.detailed)} className="ml-2 px-2 py-1 rounded-lg bg-green-500 text-white hover:bg-green-400 transition">
-                  Tell me more
+                  More Info..
                 </button>
               )}
               <button onClick={() => copyToClipboard(message.message)} className="ml-2 px-2 py-1 rounded-lg bg-purple-500 text-white hover:bg-purple-400 transition">
