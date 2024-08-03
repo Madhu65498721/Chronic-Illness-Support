@@ -3,7 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faRobot, faSpinner, faQuestionCircle, faCopy } from '@fortawesome/free-solid-svg-icons';
-import bot from '../app/bot.png';
 
 const predefinedProblems = {
   "How can I manage my chronic illness effectively?": {
@@ -126,7 +125,7 @@ export default function Home() {
 
       <div className="mb-6">
         <h2 className="text-center text-2xl mb-4">Common Questions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {Object.keys(predefinedProblems).map((question, index) => (
             <div
               key={index}
