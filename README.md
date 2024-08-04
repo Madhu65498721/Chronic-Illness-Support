@@ -1,4 +1,4 @@
-## Chronic Illness Support Chatbot
+## CHRONIC ILLNESS SUPPORT CHATBOT
 
 This project demonstrates how to implement a chatbot for chronic illness support using Next.js and the [GEMINI API].
 
