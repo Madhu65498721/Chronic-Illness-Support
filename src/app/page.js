@@ -171,7 +171,7 @@ export default function Home() {
           className="flex-1 p-3 border border-gray-600 rounded-lg bg-gray-800 text-white"
         />
         <button type="submit" className="ml-4 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-400 transition">
-          ASK
+          Send
         </button>
       </form>
 
